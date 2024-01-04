@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/recruiter.css">
+   </head>
+<body>
+  <div class="sidebar close">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">Recruiter Panel</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#recruiter-home">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Home</span>
+        </a>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#add-candidate">
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Add Candidate</span>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#edit-candidate">
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">Edit Candidate</span>
+          </a>
+        </div>
+      </li>
+    
+      <li>
+    <div class="profile-details">
+      <div class="profile-content">
+        <!--<img src="image/profile.jpg" alt="profileImg">-->
+      </div>
+      <div class="name-job">
+        <div class="profile_name">Farid Sheikh</div>
+        <div class="job">Admin</div>
+        <div id="currentDate" style="color: aliceblue;"></div>
+      </div>
+      <i class='bx bx-log-out' ></i>
+    </div>
+  </li>
+</ul>
+  </div>
+  <section class="home-section">
+    <div class="home-content home-content-header">
+        <div>
+            <i class='bx bx-menu' ></i>
+            <span class="text">Recruiter Panel</span>
+        </div>
+      <div class="header-right">
+        <img src="/notification.png" alt="notification">
+        <img src="/user.png" alt="user">
+      </div>
+    </div>
+
+    <div id="recruiter-home" class="section">
+        <div>
+            <span>Name : </span>
+            <span>Revanth Reddy</span>
+        </div>
+        <div>
+            <span>Age : </span>
+            <span>40</span>
+        </div>
+        <div>
+            <span>Experience : </span>
+            <span>20 years</span>
+        </div>
+    </div>
+
+    <div id="add-candidate" class="section">
+        <form id="add-candidate-form" class="candidate-form">
+            <div>
+                <h1>Add Candidate</h1>
+            </div>
+            <div>
+                <span>Name : </span>
+                <input type="text" name="name" id="name" placeholder="Enter Candidate Name.." required> 
+            </div>
+            <div>
+                <span>Phone : </span>
+                <input type="number" name="phone" id="phone">
+            </div>
+            <div>
+                <span>Location : </span>
+                <input type="text" name="location" id="location">
+            </div>
+            <div>
+                <span>Job Interest : </span>
+                <input type="text" name="jobInterest" id="jobInterest">
+            </div>
+            <div>
+              <span>Status : </span>
+              <input type="text" name="status" id="status">
+          </div>
+
+          <div>
+            <span>Joined At : </span>
+            <input type="date" name="joinedAt" id="joinedAt">
+        </div>
+        <div>
+          <span>isActive : </span>
+          <select name="isActive" id="isActive">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+      </div>
+            <div>
+                <button type="submit" class="btn">Add Candidate</button>
+            </div>
+        </form>
+    </div>
+    <div id="edit-candidate" class="section edit-candidate-section">
+        <h1>Edit Candidates</h1>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Mobile Number</th>
+                        <th>Location</th>
+                        <th>Job Interest</th>
+                        <th>Status</th>
+                        <th>Joined</th>
+                        <th>Active</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+            <tbody id="candidateTableBody">
+                
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+  </section>
+  
+  <script src="admin.js"></script>
+</body>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      const homeLink = document.querySelector('.nav-links a[href="#recruiter-home"]');
+      homeLink.click();
+    });
+
+    const searchParams = new URLSearchParams(window.location.search);
+
+    const thisForm = document.getElementById('add-candidate-form');
+    thisForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const formData = new FormData(thisForm).entries()
+        const data = Object.fromEntries(formData);
+        data['recruiterId'] = searchParams.get('recruiterId');
+        const response = await fetch('http://localhost:3000/add-candidate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        console.log(result.res._id)
+        window.location.href = `http://127.0.0.1:3000/recruiter.html?recruiterId=${searchParams.get('recruiterId')}#edit-candidate`
+        window.location.reload();
+    });
+
+    function handleEditClick() {
+      const editedData = {
+          name: document.getElementById('cname').value,
+          phone: document.getElementById('cnumber').value,
+          location: document.getElementById('clocation').value,
+          jobInterest: document.getElementById('cInterest').value,
+          status: document.getElementById('cstatus').value,
+          joinedAt: document.getElementById('cdate').value,
+          isActive: document.getElementById('cactive').value,
+      };
+      fetch('http://localhost:3000/update-candidate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(editedData)
+      })
+      .then(response => response.json())
+      .then(result => {
+          console.log('Updated successfully:', result);
+      })
+      .catch(error => {
+          console.error('Error updating candidate:', error);
+      });
+  }
+
+
+    
+
+    async function LoadData(){
+        const response = await fetch(`http://localhost:3000/recruiter-candidates/${searchParams.get('recruiterId')}`);
+        const candidateData = await response.json();
+        const candidateTableBody = document.getElementById('candidateTableBody');
+        for(let i=0;i<candidateData.candidates.length;i++){
+            console.log('hi',candidateData.candidates[i]);
+            candidateTableBody.innerHTML += `
+                    <tr>
+                        <td>${candidateData.candidates[i]._id.slice(candidateData.candidates[i]._id.length-3,candidateData.candidates[i]._id.length)}</td>
+                        <td><input type="text" name="name" id="cname" value=${candidateData.candidates[i].name}></td>
+                        <td><input type="number" name="number" id="cnumber" value=${candidateData.candidates[i].phone}></td>
+                        <td><input type="text" name="location" id="clocation" value=${candidateData.candidates[i].location}></td>
+                        <td><input type="text" name="joinInterest" id="cInterest" value=${candidateData.candidates[i].jobInterest}></td>
+                        <td><input type="text" name="status" id="cstatus" value=${candidateData.candidates[i].status}></td>
+                        <td><input type="date" name="date" id="cdate" value=${candidateData.candidates[i].joinedAt}></td>
+                        <td><input type="text" name="active" id="cactive" value=${candidateData.candidates[i].isActive}></td>
+                        <td><button onclick="handleEditClick()">Edit</button></td>
+                    </tr>
+            `
+    }
+    }
+
+    LoadData();
+
+   
+
+</script>
+
+</html>

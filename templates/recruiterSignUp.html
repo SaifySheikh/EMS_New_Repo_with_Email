@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/recruiterSignUp.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form  id="signUpForm">
+            <input placeholder="Name" name="name" type="text">
+            <br>
+            <input placeholder="Email" name="email" type="email">
+            <br>
+            <input placeholder="Password" name="password" type="password">
+            <br>
+            <input class="sub" type="submit">
+        </form>
+
+        <a href="./recruiterLogin.html">Go back to login page</a>
+    </div>
+
+</body>
+
+<script>
+    const thisForm = document.getElementById('signUpForm');
+    thisForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const formData = new FormData(thisForm).entries()
+        const response = await fetch('http://localhost:3000/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(formData))
+        });
+
+        const result = await response.json();
+        console.log(result.res._id)
+        window.location.href = `http://127.0.0.1:3000/recruiter.html?recruiterId=${result.res._id}`
+    });
+</script>
+
+</html>

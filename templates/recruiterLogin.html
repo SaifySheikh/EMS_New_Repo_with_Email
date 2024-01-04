@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="/recruiterLogin.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Login Form</h1>
+        <form id="loginForm">
+            <input placeholder="Email" name="email" type="text">
+            <br>
+            <input placeholder="Password" name="password" type="password">
+            <br>
+            <input class="sub" type="submit">
+            <h3>Don't have an account?</h3>
+            <a href="./recruiterSignUp.html">Create a new account</a>
+        </form>
+    </div>
+
+</body>
+
+<script>
+    const thisForm = document.getElementById('loginForm');
+    thisForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const formData = new FormData(thisForm).entries()
+        const response = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(formData))
+        });
+
+        const result = await response.json();
+        console.log(result.res._id)
+        window.location.href = `http://127.0.0.1:3000/recruiter.html?recruiterId=${result.res._id}`
+    });
+</script>
+
+</html>

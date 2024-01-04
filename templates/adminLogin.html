@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .login-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .login-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Administrator Login</h2>
+        <form onsubmit="handleSubmit(event)">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Get the form data
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        // Check if both fields are filled in
+        if (email == "" || password == "") {
+            alert('Please fill out all fields');
+            return false;
+            } else {
+                // Send the data to the server
+                if(email==="admin@gmail.com" && password==="123456"){
+                    window.location.href='http://127.0.0.1:3000/admin.html';
+                    return true;
+                }else{
+                    alert("Incorrect Credentials");
+                    return false;
+                }
+            }
+    }
+</script>
+
+</html>

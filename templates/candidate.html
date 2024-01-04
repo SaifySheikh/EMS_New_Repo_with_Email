@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+     <link rel="stylesheet" href="/candidate.css">
+   </head>
+<body>
+  <div class="sidebar close">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">Admin Panel</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="admin.html">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Home</span>
+        </a>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="admin.html">Home</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="admin_to_recruiter.html">
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Recruiter</span>
+          </a>
+          
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="admin_to_recruiter.html">Recruiter</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="client.html">
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">Client</span>
+          </a>
+          
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="client.html">Client</a></li>
+          
+        </ul>
+      </li>
+      <li>
+        <a href="candidate.html">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="link_name">Candidate</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="candidate.html">Candidate</a></li>
+        </ul>
+      </li>
+     
+      
+      <li>
+    <div class="profile-details">
+      <div class="profile-content">
+        <!--<img src="image/profile.jpg" alt="profileImg">-->
+      </div>
+      <div class="name-job">
+        <div class="profile_name">Farid Sheikh</div>
+        <div class="job">Admin</div>
+        <div id="currentDate" style="color: aliceblue;"></div>
+      </div>
+      <i class='bx bx-log-out' ></i>
+    </div>
+  </li>
+</ul>
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">System Administrator</span>
+    </div>
+
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Job Interest</th>
+            <th>Status</th>
+            <th>Joined At</th>
+            <th>Active</th>
+        </tr>
+        <tbody id="candidateTableBody"></tbody>
+    </table>
+
+  
+
+  </section>
+  
+  <script src="candidate_new.js"></script>
+</body>
+</html>

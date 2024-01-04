@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login </title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="sign-in-container">
+      <form class="my-form" method="post" action="/">
+        <div class="my-form__wrapper">
+          <div class="login-welcome-row">
+            <h1>Start Your Jourey &#x1F44F;</h1>
+            <p>Please enter your details!</p>
+          </div>
+          <div class="socials-row">
+            <a href="#" title="Use Google">
+              <img src="assets/google.png" alt="Google" />
+              Log in with Google
+            </a>
+          </div>
+          <div class="divider">
+            <div class="divider-line"></div>
+            Or
+            <div class="divider-line"></div>
+          </div>
+          <div class="text-field">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+            <img alt="Email Icon" title="Email Icon" src="assets/email.svg" />
+          </div>
+          <div class="text-field">
+            <label for="password">Password:</label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Your Password"
+              title="Minimum 6 characters at least 1 Alphabet and 1 Number"
+              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+              required
+            />
+            <img
+              alt="Password Icon"
+              title="Password Icon"
+              src="assets/password.svg"
+            />
+          </div>
+
+          <div class="text-field">
+            <label for="confirm-password">Confirm Password:</label>
+            <input
+              id="confirm-password"
+              type="password"
+              name="confirm-password"
+              placeholder="Confirm Your Password"
+              title="Confirm Password"
+              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+              required
+            />
+            <img
+              alt="Password Icon"
+              title="Password Icon"
+              src="assets/password.svg"
+            />
+          </div>
+
+          <input type="submit" class="my-form__button" value="Login" />
+          <div class="my-form__actions">
+            <div class="my-form__signup">
+              <a href="#" title="Sign-up"> Sign up </a>
+            </div>
+          </div>
+        </div>
+      </form>
+      <img src="assets/sign-in.png" alt="login" />
+    </div>
+    <script src="script2.js"></script>
+  </body>
+</html>
