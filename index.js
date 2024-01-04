@@ -101,9 +101,15 @@ app.get("/admin_data", async (req, res) => {
     // Process the data to extract relevant information
     const formattedAdmins = admins.map(admin => ({
       name: admin.name,
+      email:admin.email,
       hiredCandidates: admin.recruitedCandidates.length,
       activeCandidates: admin.recruitedCandidates.filter(candidate => candidate.active).length,
     }));
+
+
+    
+
+    console.log(formattedAdmins);
 
     res.json(formattedAdmins);
   } catch (error) {
