@@ -39,8 +39,9 @@ document.addEventListener("DOMContentLoaded", async () => {
               <td>${admin.name}</td>
               <td>${admin.hiredCandidates}</td>
               <td>${admin.activeCandidates}</td>
+              <td>${admin.email}</td>
               <td><button class="detailButton" onclick="showDetails('${admin.name}')">Detail</button></td>
-              <td><button class="sendButton" onclick="TakeToSendEmail()">Send Data</button></td>
+              <td><button class="sendButton" onclick="TakeToSendEmail('${admin.email}')">Send Data</button></td>
           `;
           tableBody.appendChild(row);
       });
@@ -85,12 +86,14 @@ function showDetails(recruiterName) {
 }
 
 
-function TakeToSendEmail() {
-    // Load sendEmail.html
-    window.location.href = 'sendEmail.html';
-    
+function TakeToSendEmail(Emailid) {
+    // Encode the Emailid to ensure it's properly formatted in the URL
+    const encodedEmailid = encodeURIComponent(Emailid);
 
-  }
+    // Redirect to sendEmail.html with Emailid as a URL parameter
+    window.location.href = `sendEmail.html?email=${encodedEmailid}`;
+}
+
 
 
 
