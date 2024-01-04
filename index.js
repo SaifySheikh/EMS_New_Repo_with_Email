@@ -115,32 +115,53 @@ app.get("/admin_data", async (req, res) => {
 
 
 app.get("/recruiter_details", async (req, res) => {
-  console.log("DON - SRK")
+  console.log("DON - SRK");
   const recruiterName = req.query.name;
 
   try {
-    // Find the recruiter in the database based on the provided name
+    
     const recruiter = await recruiterModel.findOne({ name: recruiterName }).populate("recruitedCandidates");
 
     if (!recruiter) {
-      // If the recruiter is not found, return a 404 response
+      
       return res.status(404).json({ error: "Recruiter not found" });
+    }
+
+    function formatJoinDate(rawDate) {
+      
+      const dateString = String(rawDate);
+    
+      
+      if (typeof dateString === 'string') {
+        
+        const formattedDate = dateString.substring(0, 10);
+        return formattedDate;
+      } else {
+        
+        console.error('Invalid date format. Expected a string.');
+        return dateString; 
+      }
     }
 
     // Process the data to extract relevant information
     const formattedRecruiterData = {
       name: recruiter.name,
       recruitedCandidates: recruiter.recruitedCandidates.map(candidate => ({
+        date: formatJoinDate(candidate.joinedAt),
         name: candidate.name,
         phone: candidate.phone,
         location: candidate.location,
         jobInterest: candidate.jobInterest,
         Status: candidate.Status,
-        joinedAt: candidate.joinedAt,
+        joinedAt: formatJoinDate(candidate.joinedAt), 
         isActive: candidate.isActive,
       })),
     };
 
+    
+    console.log(formattedRecruiterData);
+
+    
     res.json(formattedRecruiterData);
   } catch (error) {
     console.error(error);
