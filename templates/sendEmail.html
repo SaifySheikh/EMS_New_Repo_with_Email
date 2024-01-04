@@ -22,6 +22,19 @@
         emailjs.init("CnmCTlPUx-WeQs3dp");
       })();
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the email parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailid = urlParams.get('email');
+
+        // Set the value of the element with id="email"
+        document.getElementById('email').value = emailid;
+    });
+</script>
+
+
    </head>
 <body>
   <div class="sidebar close">
@@ -120,7 +133,7 @@
               <input
                 type="email"
                 class="form-control"
-                id="email"
+                id="email" readonly
                 placeholder="Enter email"
               />
             </div>
