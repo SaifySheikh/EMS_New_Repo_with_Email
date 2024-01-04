@@ -18,6 +18,10 @@ const recruiterSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    active:{
+        type:String,
+        required: true
+    },
     recruitedCandidates: [
         {
             type: Schema.Types.ObjectId,
