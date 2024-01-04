@@ -19,8 +19,7 @@ const recruiterSchema = new mongoose.Schema({
         required: true
     },
     active:{
-        type:String,
-        required: true
+        type:String
     },
     recruitedCandidates: [
         {
