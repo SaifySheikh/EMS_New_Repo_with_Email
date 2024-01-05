@@ -81,6 +81,24 @@
       <span class="text">System Administrator</span>
     </div>
 
+    <div class="center-container">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <select id="searchCriteria">
+          <option value="0">Select Criteria</option>
+          <option value="1">Name</option>
+          <option value="2">Phone</option>
+          <option value="3">Location</option>
+          <option value="4">Job Interest</option>
+          <option value="5">Joined At</option>
+          <option value="6">Active</option>
+        </select>
+        <button onclick="searchCandidates()">Search</button>
+      </div>
+
+    </div>
+    
+
 
     <table border="1">
         <tr>
@@ -88,7 +106,6 @@
             <th>Phone</th>
             <th>Location</th>
             <th>Job Interest</th>
-            <th>Status</th>
             <th>Joined At</th>
             <th>Active</th>
         </tr>
@@ -98,7 +115,62 @@
   
 
   </section>
-  
+  <script>
+    function searchCandidates() {
+  var input, filter, table, tbody, tr, td, i, txtValue, searchIndex;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.querySelector("table");
+  tbody = document.getElementById("candidateTableBody");
+  tr = tbody.getElementsByTagName("tr");
+  searchIndex = document.getElementById("searchCriteria").value;
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[searchIndex - 1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+
+      // Special handling for "Joined At" field
+      if (searchIndex == 5) { // Assuming 5 is the index for "Joined At"
+        console.log(`Comparing: ${filter} with ${txtValue}`);
+        if (compareDates(filter, txtValue)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      } else {
+        if (txtValue.toUpperCase().includes(filter)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+}
+
+function compareDates(enteredDate, cellDate) {
+  // Parse dates and compare
+  var enteredDateObj = parseDate(enteredDate);
+  var cellDateObj = parseDate(cellDate);
+
+  console.log('Parsed Dates:', enteredDateObj, cellDateObj);
+
+  return (
+    enteredDateObj && cellDateObj &&
+    enteredDateObj.getTime() === cellDateObj.getTime()
+  );
+}
+
+function parseDate(dateString) {
+  var parsedDate = new Date(dateString);
+  return isNaN(parsedDate) ? null : parsedDate;
+}
+
+
+
+
+  </script>
   <script src="candidate_new.js"></script>
 </body>
 </html>
