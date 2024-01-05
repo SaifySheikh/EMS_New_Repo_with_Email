@@ -56,7 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
                       <td>${user.Company_Name}</td>
                       <td>${user.Target_Completed}</td>
                       <td>${user.Requirement}</td>
-                      <td><button class="editButton" data-id="${user._id}">Edit</button></td>
+                      <td><button class="editButton" 
+                        data-id="${user._id}" 
+                        data-companyName="${user.Company_Name}" 
+                        data-target="${user.Target_Completed}" 
+                        data-requirement="${user.Requirement}">Edit</button></td>
                     `;
                   tbody.appendChild(row);
               }
@@ -72,9 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
   userList.addEventListener('click', async (e) => {
       if (e.target.classList.contains('editButton')) {
           const userId = e.target.getAttribute('data-id');
-          const newCompanyName = prompt('Enter new CompanyName:'); // You can use a more sophisticated UI for editing
-          const newTarget = prompt('Enter new Target Completed:');
-          const newRequirement = prompt('Enter new Requirement:');
+          const oldCompanyName = e.target.getAttribute('data-companyName');
+const oldTarget = e.target.getAttribute('data-target');
+const oldRequirement = e.target.getAttribute('data-requirement');
+
+const newCompanyName = prompt(`Enter new CompanyName (Enter "${oldCompanyName}" to keep the previous value):`);
+const newTarget = prompt(`Enter new Target Completed (Enter "${oldTarget}" to keep the previous value):`);
+const newRequirement = prompt(`Enter new Requirement (Enter "${oldRequirement}" to keep the previous value):`);
+
 
           // Check if Target Completed is less than or equal to Requirement
           if (parseInt(newTarget) <= parseInt(newRequirement)) {
