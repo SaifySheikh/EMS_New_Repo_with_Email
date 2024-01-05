@@ -48,10 +48,7 @@
             border-radius: 5px;
             margin-left: 40%;
         }
-
-        
-
-        .login-button:hover {
+         .login-button:hover {
             background-color: #34385f;
         }
 
@@ -85,15 +82,12 @@
 <script>
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Get the form data
         let email = document.getElementById("recruiterId").value;
         let password = document.getElementById("password").value;
-        // Check if both fields are filled in
         if (email == "" || password == "") {
             alert('Please fill out all fields');
             return false;
             } else {
-                // Send the data to the server
                 if(email==="recruiter123" && password==="123456"){
                     window.location.href='http://127.0.0.1:3000/recruiterLogin.html';
                     return true;
