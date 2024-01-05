@@ -93,7 +93,3 @@ function TakeToSendEmail(Emailid) {
     // Redirect to sendEmail.html with Emailid as a URL parameter
     window.location.href = `sendEmail.html?email=${encodedEmailid}`;
 }
-
-
-
-
