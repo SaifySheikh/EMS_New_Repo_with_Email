@@ -171,6 +171,14 @@
           joinedAt: document.getElementById('cdate'+i).value,
           isActive: document.getElementById('cactive'+i).value,
       };
+
+
+      if (editedData.phone.length !== 10) {
+        alert("Mobile Number must have a length of 10 characters.");
+        return;
+    }
+
+    
       editedData['candidateId'] = candidateId;
       fetch('http://localhost:3000/update-candidate', {
           method: 'POST',
@@ -180,6 +188,7 @@
       .then(response => response.json())
       .then(result => {
           console.log('Updated successfully:', result);
+          alert("Updated successfully");
       })
       .catch(error => {
           console.error('Error updating candidate:', error);
