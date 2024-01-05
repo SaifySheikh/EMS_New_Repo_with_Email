@@ -19,10 +19,6 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    status: {
-        type: String,
-        required: true
-    },
     joinedAt: {
         type: Date,
         required: true

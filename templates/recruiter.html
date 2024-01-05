@@ -43,7 +43,7 @@
       </div>
       <div class="name-job">
         <div class="profile_name" id="recruiter-name">Farid Sheikh</div>
-        <div class="job">Admin</div>
+        <div class="job">Recruiter</div>
         <div id="currentDate" style="color: aliceblue;"></div>
       </div>
       <i class='bx bx-log-out' id="admin-logout" ></i>
@@ -78,7 +78,7 @@
             </div>
             <div>
                 <span>Phone : </span>
-                <input type="number" name="phone" id="phone">
+                <input type="tel" name="phone"  id="phone" pattern="[0-9]{10}">
             </div>
             <div>
                 <span>Location : </span>
@@ -88,10 +88,6 @@
                 <span>Job Interest : </span>
                 <input type="text" name="jobInterest" id="jobInterest">
             </div>
-            <div>
-              <span>Status : </span>
-              <input type="text" name="status" id="status">
-          </div>
 
           <div>
             <span>Joined At : </span>
@@ -120,7 +116,6 @@
                         <th>Mobile Number</th>
                         <th>Location</th>
                         <th>Job Interest</th>
-                        <th>Status</th>
                         <th>Joined</th>
                         <th>Active</th>
                         <th>Edit</th>
@@ -173,7 +168,6 @@
           phone: document.getElementById('cnumber'+i).value,
           location: document.getElementById('clocation'+i).value,
           jobInterest: document.getElementById('cInterest'+i).value,
-          status: document.getElementById('cstatus'+i).value,
           joinedAt: document.getElementById('cdate'+i).value,
           isActive: document.getElementById('cactive'+i).value,
       };
@@ -216,6 +210,9 @@
     
 
     async function LoadData(){
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
         const response = await fetch(`http://localhost:3000/recruiter-candidates/${searchParams.get('recruiterId')}`);
         const candidateData = await response.json();
         const candidateTableBody = document.getElementById('candidateTableBody');
@@ -228,8 +225,7 @@
                         <td><input type="number" name="number" id="cnumber${i}" value=${candidateData.candidates[i].phone}></td>
                         <td><input type="text" name="location" id="clocation${i}" value=${candidateData.candidates[i].location}></td>
                         <td><input type="text" name="joinInterest" id="cInterest${i}" value=${candidateData.candidates[i].jobInterest}></td>
-                        <td><input type="text" name="status" id="cstatus${i}" value=${candidateData.candidates[i].status}></td>
-                        <td><input type="date" name="date" id="cdate${i}" value=${candidateData.candidates[i].joinedAt}></td>
+                        <td><input type="text" name="date" id="cdate${i}" value=${candidateData.candidates[i].month}></td>
                         <td><input type="text" name="active" id="cactive${i}" value=${candidateData.candidates[i].isActive}></td>
                         <td><button onclick="handleEditClick('${candidateData.candidates[i]._id}',${i})">Edit</button></td>
                     </tr>

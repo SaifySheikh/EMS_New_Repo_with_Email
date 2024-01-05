@@ -160,7 +160,6 @@ app.get("/recruiter_details", async (req, res) => {
         phone: candidate.phone,
         location: candidate.location,
         jobInterest: candidate.jobInterest,
-        Status: candidate.Status,
         joinedAt: formatJoinDate(candidate.joinedAt), 
         isActive: candidate.isActive,
       })),
@@ -238,7 +237,6 @@ app.get("/candidate_details", async (req, res) => {
       phone: candidate.phone,
       location: candidate.location,
       jobInterest: candidate.jobInterest,
-      status: candidate.status,
       joinedAt: candidate.joinedAt,
       isActive: candidate.isActive,
     }));
@@ -266,10 +264,8 @@ app.post('/update-candidate', async (req, res) => {
     phone: req.body.phone,
     location: req.body.location,
     jobInterest: req.body.jobInterest,
-    status: req.body.status,
-    joinedAt: req.body.joinedAt,
     isActive: req.body.isActive,
-    month: monthNames[new Date(req.body.joinedAt).getMonth()]
+    month: req.body.joinedAt
   };
 
   try {
@@ -296,7 +292,6 @@ app.post('/add-candidate', async (req, res) => {
       phone: req.body.phone,
       location: req.body.location,
       jobInterest:req.body.jobInterest,
-      status:req.body.status,
       joinedAt:req.body.joinedAt,
       isActive:req.body.isActive,
       month:monthNames[new Date(req.body.joinedAt).getMonth()]
