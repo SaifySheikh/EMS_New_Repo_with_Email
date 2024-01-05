@@ -124,6 +124,8 @@ app.get("/recruiter_details", async (req, res) => {
   console.log("DON - SRK");
   const recruiterName = req.query.name;
 
+  
+
   try {
     
     const recruiter = await recruiterModel.findOne({ name: recruiterName }).populate("recruitedCandidates");
