@@ -24,7 +24,11 @@ document.getElementById('currentDate').innerText = getCurrentDate();
 
 
 function adminLogout() {
-  window.location.replace('index.html');
+  // Redirect to index.html with a timestamp parameter
+  const timestamp = new Date().getTime();
+  window.location.replace(`index.html?timestamp=${timestamp}`);
 }
 
+
+// Attach the click event to the logout icon
 document.getElementById('admin-logout').addEventListener('click', adminLogout);
