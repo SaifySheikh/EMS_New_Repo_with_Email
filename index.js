@@ -103,7 +103,7 @@ app.get("/admin_data", async (req, res) => {
       name: admin.name,
       email:admin.email,
       hiredCandidates: admin.recruitedCandidates.length,
-      activeCandidates: admin.recruitedCandidates.filter(candidate => candidate.active).length,
+      activeCandidates: admin.recruitedCandidates.filter(candidate => candidate.isActive).length,
     }));
 
 
