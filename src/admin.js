@@ -21,3 +21,10 @@ let arrow = document.querySelectorAll(".arrow");
 
 
 document.getElementById('currentDate').innerText = getCurrentDate();
+
+
+function adminLogout() {
+  window.location.replace('index.html');
+}
+
+document.getElementById('admin-logout').addEventListener('click', adminLogout);
