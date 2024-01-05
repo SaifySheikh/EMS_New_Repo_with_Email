@@ -42,11 +42,11 @@
         <!--<img src="image/profile.jpg" alt="profileImg">-->
       </div>
       <div class="name-job">
-        <div class="profile_name">Farid Sheikh</div>
+        <div class="profile_name" id="recruiter-name">Farid Sheikh</div>
         <div class="job">Admin</div>
         <div id="currentDate" style="color: aliceblue;"></div>
       </div>
-      <i class='bx bx-log-out' ></i>
+      <i class='bx bx-log-out' id="admin-logout" ></i>
     </div>
   </li>
 </ul>
@@ -64,18 +64,7 @@
     </div>
 
     <div id="recruiter-home" class="section">
-        <div>
-            <span>Name : </span>
-            <span>Revanth Reddy</span>
-        </div>
-        <div>
-            <span>Age : </span>
-            <span>40</span>
-        </div>
-        <div>
-            <span>Experience : </span>
-            <span>20 years</span>
-        </div>
+        
     </div>
 
     <div id="add-candidate" class="section">
@@ -141,6 +130,9 @@
                 
             </tbody>
         </table>
+        <button style="margin-top:2rem;margin-bottom:2rem;margin-left:2rem" onclick="window.location.reload()">
+          Refresh
+        </button>
         </div>
     </div>
 
@@ -150,7 +142,6 @@
 </body>
 
 <script>
-    
     document.addEventListener('DOMContentLoaded', function () {
       const homeLink = document.querySelector('.nav-links a[href="#recruiter-home"]');
       homeLink.click();
@@ -176,16 +167,17 @@
         window.location.reload();
     });
 
-    function handleEditClick() {
+    function handleEditClick(candidateId,i) {
       const editedData = {
-          name: document.getElementById('cname').value,
-          phone: document.getElementById('cnumber').value,
-          location: document.getElementById('clocation').value,
-          jobInterest: document.getElementById('cInterest').value,
-          status: document.getElementById('cstatus').value,
-          joinedAt: document.getElementById('cdate').value,
-          isActive: document.getElementById('cactive').value,
+          name: document.getElementById('cname'+i).value,
+          phone: document.getElementById('cnumber'+i).value,
+          location: document.getElementById('clocation'+i).value,
+          jobInterest: document.getElementById('cInterest'+i).value,
+          status: document.getElementById('cstatus'+i).value,
+          joinedAt: document.getElementById('cdate'+i).value,
+          isActive: document.getElementById('cactive'+i).value,
       };
+      editedData['candidateId'] = candidateId;
       fetch('http://localhost:3000/update-candidate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -201,6 +193,26 @@
   }
 
 
+  async function LoadRecruiterData(){
+    const response = await fetch(`http://localhost:3000/recruiter-info/${searchParams.get('recruiterId')}`);
+    const recruiterData = await response.json();
+    const recruiterHomeBody = document.getElementById('recruiter-home');
+    recruiterHomeBody.innerHTML = '';
+    recruiterHomeBody.innerHTML += `
+        <div>
+          <span>Name : </span>
+          <span>${recruiterData.recruiterInfo.name}</span>
+      </div>
+      <div>
+          <span>Email : </span>
+          <span>${recruiterData.recruiterInfo.email}</span>
+      </div>
+    `;
+    const recruiterName = document.getElementById('recruiter-name');
+    recruiterName.innerHTML = '';
+    recruiterName.innerHTML += `${recruiterData.recruiterInfo.name}`;
+  }
+
     
 
     async function LoadData(){
@@ -212,20 +224,21 @@
             candidateTableBody.innerHTML += `
                     <tr>
                         <td>${candidateData.candidates[i]._id.slice(candidateData.candidates[i]._id.length-3,candidateData.candidates[i]._id.length)}</td>
-                        <td><input type="text" name="name" id="cname" value=${candidateData.candidates[i].name}></td>
-                        <td><input type="number" name="number" id="cnumber" value=${candidateData.candidates[i].phone}></td>
-                        <td><input type="text" name="location" id="clocation" value=${candidateData.candidates[i].location}></td>
-                        <td><input type="text" name="joinInterest" id="cInterest" value=${candidateData.candidates[i].jobInterest}></td>
-                        <td><input type="text" name="status" id="cstatus" value=${candidateData.candidates[i].status}></td>
-                        <td><input type="date" name="date" id="cdate" value=${candidateData.candidates[i].joinedAt}></td>
-                        <td><input type="text" name="active" id="cactive" value=${candidateData.candidates[i].isActive}></td>
-                        <td><button onclick="handleEditClick()">Edit</button></td>
+                        <td><input type="text" name="name" id="cname${i}" value=${candidateData.candidates[i].name}></td>
+                        <td><input type="number" name="number" id="cnumber${i}" value=${candidateData.candidates[i].phone}></td>
+                        <td><input type="text" name="location" id="clocation${i}" value=${candidateData.candidates[i].location}></td>
+                        <td><input type="text" name="joinInterest" id="cInterest${i}" value=${candidateData.candidates[i].jobInterest}></td>
+                        <td><input type="text" name="status" id="cstatus${i}" value=${candidateData.candidates[i].status}></td>
+                        <td><input type="date" name="date" id="cdate${i}" value=${candidateData.candidates[i].joinedAt}></td>
+                        <td><input type="text" name="active" id="cactive${i}" value=${candidateData.candidates[i].isActive}></td>
+                        <td><button onclick="handleEditClick('${candidateData.candidates[i]._id}',${i})">Edit</button></td>
                     </tr>
             `
     }
     }
 
     LoadData();
+    LoadRecruiterData();
 
    
 

@@ -255,6 +255,34 @@ app.get("/candidate_details", async (req, res) => {
 const RecruiterCollection = require("./model/recruiter");
 const candidateCollection = require("./model/candidate");
 
+app.post('/update-candidate', async (req, res) => {
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const data = {
+    name: req.body.name,
+    phone: req.body.phone,
+    location: req.body.location,
+    jobInterest: req.body.jobInterest,
+    status: req.body.status,
+    joinedAt: req.body.joinedAt,
+    isActive: req.body.isActive,
+    month: monthNames[new Date(req.body.joinedAt).getMonth()]
+  };
+
+  try {
+    const candidateId = req.body.candidateId;
+    const response = await candidateCollection.updateOne({ _id: candidateId }, { $set: data });
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Something went wrong");
+  }
+});
+
+
 
 
 app.post('/add-candidate', async (req, res) => {
@@ -290,6 +318,19 @@ app.post('/add-candidate', async (req, res) => {
       res.send("Something went wrong");
   }
 });
+
+app.get('/recruiter-info/:recruiterId',async(req,res) => {
+  const recruiterId = req.params.recruiterId;
+  try{
+    const recruiter = await RecruiterCollection.findById(recruiterId);
+    res.status(200).json({
+      recruiterInfo : recruiter
+    });
+  }catch(error){
+    console.error(error);
+      res.status(500).json({ error: "Something went wrong" });
+  }
+})
 
 app.get('/recruiter-candidates/:recruiterId', async (req, res) => {
   const recruiterId = req.params.recruiterId;
@@ -351,7 +392,6 @@ app.post('/login', async (req, res) => {
       res.send("Something went wrong");
   }
 });
-
 
 //yha tak
 

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Auth</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #C7D2DC;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .login-button {
+            background-color: #2E3257;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 40%;
+        }
+
+        
+
+        .login-button:hover {
+            background-color: #34385f;
+        }
+
+        .login-container{
+            background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  width: fit-content;
+  margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: x-large; background-color: #2E3257; border-radius: 5px;color: aliceblue; height: 15%; padding: 5px 5px;">Administrator Login</h2>
+        <form onsubmit="handleSubmit(event)">
+            <label for="recruiterId">Recruiter Username</label>
+            <input type="text" id="recruiterId" name="recruiterId" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="login-button">Authenticate</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Get the form data
+        let email = document.getElementById("recruiterId").value;
+        let password = document.getElementById("password").value;
+        // Check if both fields are filled in
+        if (email == "" || password == "") {
+            alert('Please fill out all fields');
+            return false;
+            } else {
+                // Send the data to the server
+                if(email==="recruiter123" && password==="123456"){
+                    window.location.href='http://127.0.0.1:3000/recruiterLogin.html';
+                    return true;
+                }else{
+                    alert("Incorrect Credentials");
+                    return false;
+                }
+            }
+    }
+</script>
+
+</html>
