@@ -340,6 +340,8 @@
 #userList {
   list-style: none;
   padding: 0;
+  border-radius: 5px;
+  padding: 5px 7px;
 }
 
 #userList li {
@@ -369,12 +371,15 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 20px;
+  border-radius: 5px;
+  padding: 5px 7px;
 }
 
 th, td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  
 }
 
 th {
@@ -389,7 +394,7 @@ tbody tr:hover {
 /* Add these styles to your existing stylesheet */
 
 .editButton {
-  background-color: #4caf50;
+  background-color: #3498db;
   color: #fff;
   border: none;
   padding: 5px 10px;
