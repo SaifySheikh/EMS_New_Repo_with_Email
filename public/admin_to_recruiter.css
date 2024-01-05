@@ -376,3 +376,29 @@ tbody tr {
       overflow-x: scroll;
     }
 }
+
+/* Add this to your CSS stylesheet or in a style tag in your HTML */
+td {
+  text-align: center;
+  padding: 8px;
+}
+
+.detailButton,
+.sendButton {
+  background-color: #3498db; /* Green background */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.detailButton:hover,
+.sendButton:hover {
+  background-color: #2980b9; /* Darker green on hover */
+}
