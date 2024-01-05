@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <td>${candidate.phone}</td>
                 <td>${candidate.location}</td>
                 <td>${candidate.jobInterest}</td>
-                <td>${candidate.status}</td>
                 <td>${new Date(candidate.joinedAt).toLocaleDateString()}</td>
                 <td>${candidate.isActive ? "Active" : "Inactive"}</td>
             `;
