@@ -76,3 +76,14 @@ app.post("/add_company_data", async (req, res) => {
 app.listen(port, () => {
   console.log("App Running on port: ", port);
 });
+
+
+
+
+function adminLogout() {
+  // Redirect to index.html
+  window.location.replace('index.html');
+}
+
+// Attach the click event to the logout icon
+document.getElementById('admin-logout').addEventListener('click', adminLogout);
