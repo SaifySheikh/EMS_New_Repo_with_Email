@@ -102,7 +102,6 @@ async function fetchCandidateDetails(recruiterName, selectedMonth) {
             <td>${candidate.phone}</td>
             <td>${candidate.location}</td>
             <td>${candidate.jobInterest}</td>
-            <td>${candidate.Status}</td>
             <td>${joinedAtDate.toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'short',
