@@ -46,19 +46,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           tableBody.appendChild(row);
       });
 
-      // Handle month selection change
-      const monthSelector = document.getElementById("month");
-monthSelector.addEventListener("change", () => {
-    const selectedMonth = monthSelector.value.toLowerCase();
-
-    // Loop through the rows and show/hide based on the selected month
-    const rows = tableBody.querySelectorAll("tr");
-    rows.forEach(row => {
-        const rowMonth = row.querySelector("td:nth-child(7)").textContent.toLowerCase(); // Assuming month is in the 7th column
-        row.style.display = rowMonth === selectedMonth ? "" : "none";
-    });
-});
-
 
   } catch (error) {
       console.error(error);
