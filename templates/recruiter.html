@@ -152,7 +152,7 @@
         const formData = new FormData(thisForm).entries()
         const data = Object.fromEntries(formData);
         data['recruiterId'] = searchParams.get('recruiterId');
-        const response = await fetch('http://localhost:3000/add-candidate', {
+        const response = await fetch('/add-candidate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -160,7 +160,7 @@
 
         const result = await response.json();
         console.log(result.res._id)
-        window.location.href = `http://127.0.0.1:3000/recruiter.html?recruiterId=${searchParams.get('recruiterId')}#edit-candidate`
+        window.location.href = `/recruiter.html?recruiterId=${searchParams.get('recruiterId')}#edit-candidate`
         window.location.reload();
     });
 
@@ -182,7 +182,7 @@
 
     
       editedData['candidateId'] = candidateId;
-      fetch('http://localhost:3000/update-candidate', {
+      fetch('/update-candidate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(editedData)
@@ -199,7 +199,7 @@
 
 
   async function LoadRecruiterData(){
-    const response = await fetch(`http://localhost:3000/recruiter-info/${searchParams.get('recruiterId')}`);
+    const response = await fetch(`/recruiter-info/${searchParams.get('recruiterId')}`);
     const recruiterData = await response.json();
     const recruiterHomeBody = document.getElementById('recruiter-home');
     recruiterHomeBody.innerHTML = '';
@@ -224,7 +224,7 @@
       const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
-        const response = await fetch(`http://localhost:3000/recruiter-candidates/${searchParams.get('recruiterId')}`);
+        const response = await fetch(`/recruiter-candidates/${searchParams.get('recruiterId')}`);
         const candidateData = await response.json();
         const candidateTableBody = document.getElementById('candidateTableBody');
         for(let i=0;i<candidateData.candidates.length;i++){

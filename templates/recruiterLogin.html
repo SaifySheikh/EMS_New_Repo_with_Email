@@ -31,7 +31,7 @@
     thisForm.addEventListener('submit', async function (e) {
         e.preventDefault();
         const formData = new FormData(thisForm).entries()
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(formData))
@@ -39,7 +39,7 @@
 
         const result = await response.json();
         console.log(result.res._id)
-        window.location.href = `http://127.0.0.1:3000/recruiter.html?recruiterId=${result.res._id}`
+        window.location.href = `/recruiter.html?recruiterId=${result.res._id}`
     });
 </script>
 

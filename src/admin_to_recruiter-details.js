@@ -66,7 +66,7 @@ async function fetchCandidateDetails(recruiterName, selectedMonth) {
   try {
     console.log("fetch shuru");
     const response = await fetch(
-      `http://localhost:3000/recruiter_details?name=${recruiterName}`
+      `/recruiter_details?name=${recruiterName}`
     );
     console.log("response hogya");
 

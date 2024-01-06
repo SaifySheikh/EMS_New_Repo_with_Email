@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const userList = document.getElementById('userList');
 
   // Fetch and display data
-  fetch('http://localhost:3000/client')
+  fetch('/client')
       .then(response => response.json())
       .then(data => {
           console.log('Fetched Data:', data);
@@ -77,7 +77,7 @@ const newRequirement = prompt(`Enter new Requirement (Enter "${oldRequirement}" 
 
               try {
                   // Send a request to update the data
-                  const response = await fetch(`http://localhost:3000/updateUser/${userId}`, {
+                  const response = await fetch(`/updateUser/${userId}`, {
                       method: 'PUT',
                       headers: {
                           'Content-Type': 'application/json',
