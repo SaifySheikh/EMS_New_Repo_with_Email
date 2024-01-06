@@ -87,13 +87,17 @@
                 <input type="text" name="location" id="location">
             </div>
             <div>
+              <span>Status : </span>
+              <input type="text" name="status" id="status"  required> 
+          </div>
+            <div>
                 <span>Job Interest : </span>
                 <input type="text" name="jobInterest" id="jobInterest">
             </div>
 
           <div>
             <span>Joined At : </span>
-            <input type="date" name="joinedAt" id="joinedAt">
+            <input type="date" name="joinedAt" id="joinedAt" max="">
         </div>
         <div>
           <span>isActive : </span>
@@ -117,6 +121,7 @@
                         <th>Name</th>
                         <th>Mobile Number</th>
                         <th>Location</th>
+                        <th>Status</th>
                         <th>Job Interest</th>
                         <th>Joined</th>
                         <th>Active</th>
@@ -139,6 +144,7 @@
 </body>
 
 <script>
+  document.getElementById("joinedAt").max = new Date().toISOString().split('T')[0];
     document.addEventListener('DOMContentLoaded', function () {
       const homeLink = document.querySelector('.nav-links a[href="#recruiter-home"]');
       homeLink.click();
@@ -169,6 +175,7 @@
           name: document.getElementById('cname'+i).value,
           phone: document.getElementById('cnumber'+i).value,
           location: document.getElementById('clocation'+i).value,
+          status: document.getElementById('cstatus'+i).value,
           jobInterest: document.getElementById('cInterest'+i).value,
           joinedAt: document.getElementById('cdate'+i).value,
           isActive: document.getElementById('cactive'+i).value,
@@ -235,6 +242,7 @@
                         <td><input type="text" name="name" id="cname${i}" value=${candidateData.candidates[i].name}></td>
                         <td><input type="number" name="number" id="cnumber${i}" value=${candidateData.candidates[i].phone}></td>
                         <td><input type="text" name="location" id="clocation${i}" value=${candidateData.candidates[i].location}></td>
+                        <td><input type="text" name="status" id="cstatus${i}" value=${candidateData.candidates[i].status}></td>
                         <td><input type="text" name="joinInterest" id="cInterest${i}" value=${candidateData.candidates[i].jobInterest}></td>
                         <td><input type="text" name="date" id="cdate${i}" value=${candidateData.candidates[i].month}></td>
                         <td><input type="text" name="active" id="cactive${i}" value=${candidateData.candidates[i].isActive}></td>

@@ -263,6 +263,7 @@ app.post('/update-candidate', async (req, res) => {
     name: req.body.name,
     phone: req.body.phone,
     location: req.body.location,
+    status: req.body.status,
     jobInterest: req.body.jobInterest,
     isActive: req.body.isActive,
     month: req.body.joinedAt
@@ -291,6 +292,7 @@ app.post('/add-candidate', async (req, res) => {
       name: req.body.name,
       phone: req.body.phone,
       location: req.body.location,
+      status: req.body.status,
       jobInterest:req.body.jobInterest,
       joinedAt:req.body.joinedAt,
       isActive:req.body.isActive,
