@@ -1,0 +1,10 @@
+[build]
+  publish = "EMS_ADMIN_BACKEND_MAIN"  # Replace with the directory you want to deploy
+  command = "npm build run"    # Replace with the build command for your project
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Add more configurations as needed
