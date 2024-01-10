@@ -14,6 +14,10 @@ const recruiterSchema = new mongoose.Schema({
         lowercase: true,
         trim: true
     },
+    phone:{
+        type:String,
+        required:true
+    },
     password: {
         type: String,
         required: true
