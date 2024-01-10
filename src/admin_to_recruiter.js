@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               <td>${admin.hiredCandidates}</td>
               <td>${admin.activeCandidates}</td>
               <td>${admin.email}</td>
+              <td>${admin.phone}</td>
               <td><button class="detailButton" onclick="showDetails('${admin.name}')">Detail</button></td>
               <td><button class="sendButton" onclick="TakeToSendEmail('${admin.email}')">Send Data</button></td>
           `;
