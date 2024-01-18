@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               <td>${admin.activeCandidates}</td>
               <td>${admin.email}</td>
               <td>${admin.phone}</td>
-              <td><button class="detailButton" onclick="showDetails('${admin.name}')">Detail</button></td>
+              <td><button class="detailButton" onclick="showDetails('${admin.name}', '${admin.phone}')">Detail</button></td>
               <td><button class="sendButton" onclick="TakeToSendEmail('${admin.email}')">Send Data</button></td>
           `;
           tableBody.appendChild(row);
@@ -53,27 +53,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-function showDetails(recruiterName) {
+function showDetails(recruiterName,recruiterNumber) {
   console.log("Recruiter Name:", recruiterName);
+console.log("Recruiter Number:", recruiterNumber);
 
-  // Set the recruiter name in the admin_to_recruiter-details.html file
-  const adminNameElement = document.getElementById("admin-name");
+const adminNameElement = document.getElementById("admin-name");
+const adminNumberElement = document.getElementById("admin-Number");
 
-  // Check if the element is found before setting textContent
-  if (adminNameElement) {
-      console.log('if ke andar')
-      adminNameElement.textContent = recruiterName;
+console.log(adminNameElement, adminNumberElement);
 
-      // Redirect to the admin_to_recruiter-details.html page
-      window.location.href = `/admin_to_recruiter-details.html?name=${recruiterName}`;
-
-  } else {
-      console.log('else ke andar')
-      console.error("Element with ID 'admin-name' not found.");
-  }
+if (adminNameElement && adminNumberElement) {
+    adminNameElement.textContent = recruiterName;
+    adminNumberElement.textContent = recruiterNumber;
+    window.location.href = `/admin_to_recruiter-details.html?name=${recruiterName}&phone=${recruiterNumber}`;
+} else {
+    console.error("Element with ID 'admin-Number' not found.");
 }
 
-
+}
 function TakeToSendEmail(Emailid) {
     // Encode the Emailid to ensure it's properly formatted in the URL
     const encodedEmailid = encodeURIComponent(Emailid);
