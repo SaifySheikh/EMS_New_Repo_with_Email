@@ -30,9 +30,14 @@ const monthNames = [
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
+  console.log(params);
   const recruiterName = params.get("name");
+  const recruiterNumber=params.get("phone");
+  console.log("ye hai ",recruiterNumber)
 
   const adminNameElement = document.getElementById("admin-name");
+  const adminNumberElement=document.getElementById("admin-Number");
+  console.log(adminNumberElement)
 
   if (adminNameElement) {
     adminNameElement.textContent = recruiterName;
@@ -40,9 +45,18 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Element with ID 'admin-name' not found.");
   }
 
+
+  if (adminNumberElement) {
+    adminNumberElement.textContent = recruiterNumber;
+    console.log(recruiterNumber)
+  } else {
+    console.error("Element with ID 'admin-Number' not found.");
+  }
+
   let selectedMonth;
 
   fetchCandidateDetails(recruiterName);
+  //fetchCandidateDetails(recruiterNumber);
 
   const monthSelector = document.getElementById("month");
 
