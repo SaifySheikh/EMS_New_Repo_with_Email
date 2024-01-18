@@ -129,7 +129,7 @@ app.get("/recruiter_details", async (req, res) => {
 
   try {
     
-    const recruiter = await recruiterModel.findOne({ name: recruiterName }).populate("recruitedCandidates");
+    const recruiter = await recruiterModel.findOne({ name: recruiterName}).populate("recruitedCandidates");
 
     if (!recruiter) {
       
@@ -155,6 +155,7 @@ app.get("/recruiter_details", async (req, res) => {
     // Process the data to extract relevant information
     const formattedRecruiterData = {
       name: recruiter.name,
+      phone:recruiter.phone,
       recruitedCandidates: recruiter.recruitedCandidates.map(candidate => ({
         date: formatJoinDate(candidate.joinedAt),
         name: candidate.name,
@@ -168,6 +169,7 @@ app.get("/recruiter_details", async (req, res) => {
 
     
     console.log(formattedRecruiterData);
+    console.log(recruiter.phone);
 
     
     res.json(formattedRecruiterData);
